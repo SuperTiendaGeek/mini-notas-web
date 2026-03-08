@@ -7,6 +7,10 @@ notas = []
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
+        if request.form.get("clear") == "1":
+            notas.clear()
+            return redirect("/")
+
         texto = request.form.get("nota")
         if texto:
             notas.append(texto)
